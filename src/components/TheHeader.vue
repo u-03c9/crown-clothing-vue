@@ -17,7 +17,13 @@ const userStore = useUserStore();
     >
       <router-link to="/shop"> SHOP </router-link>
       <router-link to="/shop"> CONTACT </router-link>
-      <div v-if="userStore.currentUser" class="cursor-pointer">SIGN OUT</div>
+      <div
+        v-if="userStore.currentUser"
+        class="cursor-pointer"
+        @click="userStore.signOut()"
+      >
+        SIGN OUT
+      </div>
       <router-link v-else to="/login"> SIGN IN </router-link>
     </div>
   </div>

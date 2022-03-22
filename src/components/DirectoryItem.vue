@@ -28,7 +28,7 @@ const computedSize = computed(() =>
   </router-link>
 </template>
 
-<style>
+<style scoped>
 .menu-item:hover .background-image {
   transform: scale(1.1);
   transition: transform 4s ease-in-out;
