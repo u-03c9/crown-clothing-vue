@@ -9,7 +9,7 @@ const computedSize = computed(() => (props.size ? "md:h-96" : "md:h-60"));
 <template>
   <router-link
     class="menu-item cursor-pointer min-w-[30%] flex flex-auto items-center justify-center overflow-hidden mt-0 mb-4 mx-2 border-[1px] border-black"
-    :to="linkUrl"
+    :to="'/' + linkUrl"
   >
     <div
       class="background-image w-full h-48 bg-center bg-cover"
