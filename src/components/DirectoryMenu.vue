@@ -7,7 +7,7 @@ const sections = directoryStore.sections;
 </script>
 
 <template>
-  <div class="w-full flex flex-wrap justify-between mt-20">
+  <div class="w-full flex flex-wrap justify-between mt-10 sm:mt-20">
     <DirectoryItem
       v-for="{ id, imageUrl, linkUrl, title, size } in sections"
       :key="id"

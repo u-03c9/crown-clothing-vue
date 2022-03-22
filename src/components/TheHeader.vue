@@ -13,7 +13,7 @@ const userStore = useUserStore();
     </router-link>
 
     <div
-      class="flex-grow h-full flex items-center justify-end gap-x-2 sm:gap-x-4 md:gap-x-7 py-2.5"
+      class="flex-grow h-full flex items-center justify-end gap-x-2 sm:gap-x-4 md:gap-x-7 py-2.5 text-xs md:text-base"
     >
       <router-link to="/shop"> SHOP </router-link>
       <router-link to="/shop"> CONTACT </router-link>
