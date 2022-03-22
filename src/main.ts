@@ -2,4 +2,11 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import "./index.css";
 
-createApp(App).mount("#app");
+import "./firebase/init_firebase";
+import { createPinia } from "pinia";
+import router from "./routes";
+
+const vm = createApp(App);
+vm.use(createPinia());
+vm.use(router);
+vm.mount("#app");
