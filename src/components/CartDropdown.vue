@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onBeforeUnmount, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import useCartStore from "../pinia/cartStore";
 import CustomButton from "./CustomButton.vue";
@@ -11,6 +12,18 @@ const goToCheckout = () => {
   cartStore.closeMenu();
   router.push({ name: "checkout" });
 };
+
+const dismissMenuListener = () => {
+  cartStore.closeMenu();
+};
+
+onMounted(() => {
+  window.addEventListener("click", dismissMenuListener);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("click", dismissMenuListener);
+});
 </script>
 
 <template>

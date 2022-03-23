@@ -8,7 +8,7 @@ const cartStore = useCartStore();
 <template>
   <div
     class="w-fit h-fit relative flex pb-2 cursor-pointer select-none"
-    @click="cartStore.toggleMenu()"
+    @click.stop="cartStore.toggleMenu()"
   >
     <img :src="shoppingBag" class="w-7 h-7" alt="" />
     <span class="absolute w-full text-center text-xs bottom-2.5">
