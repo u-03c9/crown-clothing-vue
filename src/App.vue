@@ -9,12 +9,10 @@ import TheSpinner from "./components/TheSpinner.vue";
     <RouterView v-slot="{ Component }">
       <template v-if="Component">
         <Transition mode="out-in">
-          <KeepAlive>
-            <Suspense>
-              <component :is="Component" />
-              <template #fallback> <TheSpinner /> </template>
-            </Suspense>
-          </KeepAlive>
+          <Suspense>
+            <component :is="Component" />
+            <template #fallback> <TheSpinner /> </template>
+          </Suspense>
         </Transition>
       </template>
     </RouterView>
