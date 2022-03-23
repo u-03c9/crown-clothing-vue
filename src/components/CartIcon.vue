@@ -12,7 +12,7 @@ const cartStore = useCartStore();
   >
     <img :src="shoppingBag" class="w-7 h-7" alt="" />
     <span class="absolute w-full text-center text-xs bottom-2.5">
-      {{ cartStore.itemsCount() }}
+      {{ cartStore.itemsCount }}
     </span>
   </div>
 </template>

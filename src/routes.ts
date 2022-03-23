@@ -4,6 +4,7 @@ const HomePage = () => import("./pages/HomePage.vue");
 const ShopPage = () => import("./pages/ShopPage.vue");
 const CollectionPage = () => import("./pages/CollectionPage.vue");
 const LoginPage = () => import("./pages/LoginPage.vue");
+const CheckoutPage = () => import("./pages/CheckoutPage.vue");
 const NotFoundPage = () => import("./pages/NotFoundPage.vue");
 
 const routes: RouteRecordRaw[] = [
@@ -16,6 +17,7 @@ const routes: RouteRecordRaw[] = [
     component: CollectionPage,
   },
   { name: "login", path: "/login", component: LoginPage },
+  { name: "checkout", path: "/checkout", component: CheckoutPage },
   {
     name: "not-found",
     path: "/(.*)",
