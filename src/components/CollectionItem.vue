@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import useCartStore from "../pinia/cartStore";
 import { CollectionItem } from "../pinia/shopStore";
 import CustomButton from "./CustomButton.vue";
 const props = defineProps<{ item: CollectionItem }>();
+
+const cartStore = useCartStore();
 </script>
 
 <template>
@@ -20,6 +23,7 @@ const props = defineProps<{ item: CollectionItem }>();
       caption="ADD TO CART"
       inverted="true"
       class="custom-button min-w-[80%] max-w-[10rem] opacity-70 absolute bottom-20"
+      @click="cartStore.addItemToCart(item)"
     />
   </div>
 </template>

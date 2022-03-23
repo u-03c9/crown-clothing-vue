@@ -1,9 +1,17 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import logo from "../assets/crown.svg";
+import { computed } from "vue";
+
+import useCartStore from "../pinia/cartStore";
 import useUserStore from "../pinia/userStore";
 
+import logo from "../assets/crown.svg";
+import CartIcon from "./CartIcon.vue";
+import CartDropdown from "./CartDropdown.vue";
+
 const userStore = useUserStore();
+const cartStore = useCartStore();
+
+const isUserLoggedIn = computed(() => !!userStore.currentUser);
 </script>
 
 <template>
@@ -18,13 +26,15 @@ const userStore = useUserStore();
       <router-link to="/shop"> SHOP </router-link>
       <router-link to="/shop"> CONTACT </router-link>
       <div
-        v-if="userStore.currentUser"
+        v-if="isUserLoggedIn"
         class="cursor-pointer"
         @click="userStore.signOut()"
       >
         SIGN OUT
       </div>
       <router-link v-else to="/login"> SIGN IN </router-link>
+      <CartIcon v-if="isUserLoggedIn" />
+      <CartDropdown v-show="isUserLoggedIn && cartStore.isMenuOpen"/>
     </div>
   </div>
 </template>
