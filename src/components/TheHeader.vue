@@ -17,7 +17,7 @@ const isUserLoggedIn = computed(() => !!userStore.currentUser);
 <template>
   <div class="h-16 mb-6 mt-3 w-full flex justify-between items-center relative">
     <router-link to="/">
-      <img :src="logo" />
+      <img :src="logo" alt="logo" />
     </router-link>
 
     <div
@@ -34,7 +34,7 @@ const isUserLoggedIn = computed(() => !!userStore.currentUser);
       </div>
       <router-link v-else to="/login"> SIGN IN </router-link>
       <CartIcon v-if="isUserLoggedIn" />
-      <CartDropdown v-show="isUserLoggedIn && cartStore.isMenuOpen"/>
+      <CartDropdown v-show="isUserLoggedIn && cartStore.isMenuOpen" />
     </div>
   </div>
 </template>
