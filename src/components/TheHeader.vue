@@ -7,11 +7,18 @@ import useUserStore from "../pinia/userStore";
 import logo from "../assets/crown.svg";
 import CartIcon from "./CartIcon.vue";
 import CartDropdown from "./CartDropdown.vue";
+import { useRouter } from "vue-router";
 
 const userStore = useUserStore();
 const cartStore = useCartStore();
+const router = useRouter();
 
 const isUserLoggedIn = computed(() => !!userStore.currentUser);
+
+const handleSignOut = () => {
+  userStore.signOut();
+  router.push({ name: "home" });
+};
 </script>
 
 <template>
@@ -25,11 +32,7 @@ const isUserLoggedIn = computed(() => !!userStore.currentUser);
     >
       <router-link to="/shop"> SHOP </router-link>
       <router-link to="/shop"> CONTACT </router-link>
-      <div
-        v-if="isUserLoggedIn"
-        class="cursor-pointer"
-        @click="userStore.signOut()"
-      >
+      <div v-if="isUserLoggedIn" class="cursor-pointer" @click="handleSignOut">
         SIGN OUT
       </div>
       <router-link v-else to="/login"> SIGN IN </router-link>

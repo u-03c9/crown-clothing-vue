@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import useToastStore from "./pinia/toastStore";
+import useUserStore from "./pinia/userStore";
 
 const HomePage = () => import("./pages/HomePage.vue");
 const ShopPage = () => import("./pages/ShopPage.vue");
@@ -16,8 +18,18 @@ const routes: RouteRecordRaw[] = [
     props: true,
     component: CollectionPage,
   },
-  { name: "login", path: "/login", component: LoginPage },
-  { name: "checkout", path: "/checkout", component: CheckoutPage },
+  {
+    name: "login",
+    path: "/login",
+    component: LoginPage,
+    meta: { requiresNoAuth: true },
+  },
+  {
+    name: "checkout",
+    path: "/checkout",
+    component: CheckoutPage,
+    meta: { requiresAuth: true },
+  },
   {
     name: "not-found",
     path: "/(.*)",
@@ -32,6 +44,19 @@ const router = createRouter({
     if (!savedPosition) return { top: 0 };
     return savedPosition;
   },
+});
+
+router.beforeEach(async (to, from, next) => {
+  const userStore = useUserStore();
+  useToastStore().dismissToast();
+
+  if (to.meta.requiresAuth && !userStore.currentUser) {
+    next({ name: "login" });
+  } else if (to.meta.requiresNoAuth && userStore.currentUser) {
+    next({ name: "home" });
+  } else {
+    next();
+  }
 });
 
 export default router;

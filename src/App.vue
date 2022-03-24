@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import TheHeader from "./components/TheHeader.vue";
 import TheSpinner from "./components/TheSpinner.vue";
+import TheToast from "./components/TheToast.vue";
 </script>
 
 <template>
   <div class="px-10 md:px-20 lg:mx-auto py-5 w-full max-w-[1290px]">
+    <TheToast />
     <TheHeader />
     <RouterView v-slot="{ Component }">
       <template v-if="Component">

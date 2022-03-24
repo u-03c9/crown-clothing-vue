@@ -5,8 +5,13 @@ import { useRouter } from "vue-router";
 import FormInput from "./FormInput.vue";
 import CustomButton from "./CustomButton.vue";
 import useUserStore from "../pinia/userStore";
+import useToastStore from "../pinia/toastStore";
+
+const props = defineProps(["isLoading"]);
+const emit = defineEmits(["update:isLoading"]);
 
 const userStore = useUserStore();
+const toastStore = useToastStore();
 const router = useRouter();
 
 const credentials = reactive({
@@ -18,10 +23,12 @@ const credentials = reactive({
 
 const handleSubmit = async () => {
   if (credentials.password !== credentials.confirmPassword) {
-    alert("The passwords do not match");
+    toastStore.displayToast("The passwords do not match!", 5);
     return;
   }
 
+  emit("update:isLoading", true);
+  toastStore.displayToast("Loading ...", 9000);
   try {
     await userStore.signUpWithEmail(
       credentials.displayName,
@@ -31,8 +38,9 @@ const handleSubmit = async () => {
     router.replace("/");
   } catch (error) {
     console.error("Email sign up error: ", error);
-    alert("somthing bad happened, please try again later");
+    toastStore.displayToast(error, 5);
   }
+  emit("update:isLoading", false);
 };
 </script>
 
@@ -73,6 +81,7 @@ const handleSubmit = async () => {
         type="submit"
         class="w-full md:w-1/2 mx-auto"
         caption="SIGN UP"
+        :disabled="isLoading"
       />
     </form>
   </div>
