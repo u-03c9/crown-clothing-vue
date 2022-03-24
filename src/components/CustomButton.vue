@@ -19,7 +19,7 @@ const extraClass = computed(() => {
 <template>
   <button
     :class="extraClass"
-    class="h-12 uppercase text-base font-bold cursor-pointer flex justify-center items-center disabled:cursor-not-allowed"
+    class="font-bold cursor-pointer flex justify-center items-center disabled:cursor-not-allowed"
   >
     {{ caption }}
   </button>

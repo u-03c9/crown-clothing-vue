@@ -70,13 +70,13 @@ const handleGoogleLogin = async () => {
       <div class="flex flex-col md:flex-row gap-x-4 gap-y-2 justify-between">
         <CustomButton
           caption="Sign In"
-          class="w-full"
+          class="w-full h-12 uppercase"
           type="submit"
           :disabled="isLoading"
         />
         <CustomButton
           caption="Sign in with GOOGLE"
-          class="w-full"
+          class="w-full h-12 uppercase"
           type="button"
           @click="handleGoogleLogin"
           is-google-sign-in="true"

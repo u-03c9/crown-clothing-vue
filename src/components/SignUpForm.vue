@@ -79,7 +79,7 @@ const handleSubmit = async () => {
       />
       <CustomButton
         type="submit"
-        class="w-full md:w-1/2 mx-auto"
+        class="w-full md:w-1/2 mx-auto uppercase h-12"
         caption="SIGN UP"
         :disabled="isLoading"
       />

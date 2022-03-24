@@ -37,7 +37,7 @@ const handleClick = (item: CollectionItem) => {
     <CustomButton
       caption="ADD TO CART"
       inverted="true"
-      class="custom-button min-w-[80%] max-w-[10rem] opacity-70 absolute bottom-20"
+      class="custom-button min-w-[80%] max-w-[10rem] opacity-70 absolute bottom-20 text-xs sm:text-sm md:text-base py-1 sm:py-2"
       @click="handleClick(item)"
     />
   </div>
@@ -46,8 +46,10 @@ const handleClick = (item: CollectionItem) => {
 <style scoped>
 .custom-button {
   display: none;
+}
 
-  @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
+  .custom-button {
     display: flex;
   }
 }
