@@ -32,7 +32,7 @@ onBeforeUnmount(() => {
     @click.stop
   >
     <div
-      class="grow flex flex-col overflow-x-hidden overflow-y-scroll custom-scrollbar"
+      class="grow flex flex-col overflow-x-hidden overflow-y-auto custom-scrollbar"
     >
       <CartItem
         v-if="cartStore.items.length"
