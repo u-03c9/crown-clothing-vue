@@ -24,7 +24,11 @@ const handleSignOut = () => {
 <template>
   <div class="h-16 mb-6 mt-3 w-full flex justify-between items-center relative">
     <router-link to="/">
-      <img :src="logo" alt="logo" />
+      <img
+        :src="logo"
+        alt="logo"
+        class="w-[40px] sm:w-[50px] h-[31px] sm:h-[39px]"
+      />
     </router-link>
 
     <div
