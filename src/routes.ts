@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import useToastStore from "./pinia/toastStore";
 import useUserStore from "./pinia/userStore";
+import useShopStore from "./pinia/shopStore";
 
 const HomePage = () => import("./pages/HomePage.vue");
 const ShopPage = () => import("./pages/ShopPage.vue");
@@ -17,6 +18,21 @@ const routes: RouteRecordRaw[] = [
     path: "/shop/:collectionId",
     props: true,
     component: CollectionPage,
+    beforeEnter: async (to, from, next) => {
+      const collectionId = to.params.collectionId.toString();
+
+      const shopStore = useShopStore();
+      const isCollectionExist = await shopStore.getCollectionById(collectionId);
+
+      if (!isCollectionExist) {
+        next({
+          name: "not-found",
+          params: { matchedPath: "/shop/" + collectionId },
+        });
+      } else {
+        next();
+      }
+    },
   },
   {
     name: "login",
@@ -32,7 +48,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     name: "not-found",
-    path: "/(.*)",
+    path: "/:matchedPath(.*)",
     component: NotFoundPage,
   },
 ];
