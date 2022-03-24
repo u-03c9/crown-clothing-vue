@@ -2,7 +2,6 @@ import { defineStore } from "pinia";
 
 import {
   User,
-  UserCredential,
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
@@ -11,6 +10,7 @@ import {
 } from "firebase/auth";
 
 import { createUserProfileDocument } from "./../firebase/utils_firestore";
+import useCartStore from "./cartStore";
 
 const USER_STORAGE_KEY = "user";
 
@@ -40,6 +40,8 @@ const useUserStore = defineStore("user", {
       getAuth().signOut();
       this.currentUser = null;
       localStorage.removeItem(USER_STORAGE_KEY);
+      const cartStore = useCartStore();
+      cartStore.$reset();
     },
 
     async signInWithGoogle() {

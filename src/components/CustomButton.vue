@@ -3,9 +3,6 @@ import { computed } from "vue";
 
 const props = defineProps(["isGoogleSignIn", "inverted", "caption"]);
 
-const baseClass = `h-12 uppercase text-base font-bold
-                   cursor-pointer flex justify-center items-center`;
-
 const extraClass = computed(() => {
   if (props.isGoogleSignIn)
     return "bg-[#4285f4] text-white hover:bg-[#357ae8] border-none";
@@ -22,7 +19,7 @@ const extraClass = computed(() => {
 <template>
   <button
     :class="extraClass"
-    class="h-12 uppercase text-base font-bold cursor-pointer flex justify-center items-center"
+    class="font-bold cursor-pointer flex justify-center items-center disabled:cursor-not-allowed"
   >
     {{ caption }}
   </button>

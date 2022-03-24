@@ -1,10 +1,25 @@
 <script setup lang="ts">
 import useCartStore from "../pinia/cartStore";
 import { CollectionItem } from "../pinia/shopStore";
+import useToastStore from "../pinia/toastStore";
+import useUserStore from "../pinia/userStore";
 import CustomButton from "./CustomButton.vue";
 const props = defineProps<{ item: CollectionItem }>();
 
 const cartStore = useCartStore();
+const userStore = useUserStore();
+const toastStore = useToastStore();
+
+const handleClick = (item: CollectionItem) => {
+  if (!userStore.currentUser) {
+    toastStore.displayToast(
+      "You need to sign in before adding items to your cart"
+    );
+    return;
+  }
+
+  cartStore.addItemToCart(item);
+};
 </script>
 
 <template>
@@ -22,8 +37,8 @@ const cartStore = useCartStore();
     <CustomButton
       caption="ADD TO CART"
       inverted="true"
-      class="custom-button min-w-[80%] max-w-[10rem] opacity-70 absolute bottom-20"
-      @click="cartStore.addItemToCart(item)"
+      class="custom-button min-w-[80%] max-w-[10rem] opacity-70 absolute bottom-20 text-xs sm:text-sm md:text-base py-1 sm:py-2"
+      @click="handleClick(item)"
     />
   </div>
 </template>
@@ -31,8 +46,10 @@ const cartStore = useCartStore();
 <style scoped>
 .custom-button {
   display: none;
+}
 
-  @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
+  .custom-button {
     display: flex;
   }
 }
